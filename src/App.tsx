@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 import CategoryPage from './pages/CategoryPage';
+import AdminDashboard from './components/AdminDashboard';
+import DeliveryDashboard from './components/DeliveryDashboard';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/category/:category" element={<CategoryPage />} />
                 <Route path="/product/:id" element={<ProductPage />} />
+                <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/delivery" element={<DeliveryDashboard />} />
               </Routes>
             </main>
             <Footer />
@@ -30,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

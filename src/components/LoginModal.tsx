@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { UserRole } from '../types';
@@ -10,10 +11,11 @@ interface LoginModalProps {
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<UserRole>('customer');
+  const [role, setRole] = useState<UserRole>('admin');
   const [error, setError] = useState('');
   
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +38,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
 
     login(username, role);
     onClose();
+    
+    // Redirect based on role
+    if (role === 'admin') {
+      navigate('/admin');
+    } else if (role === 'delivery') {
+      navigate('/delivery');
+    }
   };
 
   return (
